@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+/* COLORS */
+.primary-color {
+    background-color: #FFA63E;
+}
+
+.secondary-color {
+    background-color: #FFF1D0;
+}
+
+.card-light {
+    background-color: #FFCB71;
+}
+
+.card-lighter {
+    background-color: #FFD588;
+}
