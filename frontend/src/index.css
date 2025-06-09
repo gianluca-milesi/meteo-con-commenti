@@ -9,6 +9,14 @@
     background-color: #FFF1D0;
 }
 
+.text-light {
+    color: #221714;
+}
+
+.text-lighter {
+    color: #9c7146;
+}
+
 .card-light {
     background-color: #FFCB71;
 }
