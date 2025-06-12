@@ -24,3 +24,17 @@
 .card-lighter {
     background-color: #FFD588;
 }
+
+
+/* UTILITIES */
+.button {
+    background-color: #FFA63E;
+    color: #FFF1D0;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.button:hover {
+    background-color: #FFB561;
+    color: #221714;
+}

@@ -58,21 +58,33 @@ function CommentsSection() {
     return (
         <section>
             <h3 className="text-center text-light font-semibold mb-2">Comments</h3>
-            <form onSubmit={handleSubmit}>
+            <form
+                onSubmit={handleSubmit}
+                className="flex flex-col md:flex-row items-center mb-2 gap-1">
                 <input
                     type="text"
                     placeholder="Username..."
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
+                    className="md:w-1/3 bg-black py-1 px-2 text-light font-semibold secondary-color rounded-md mr-1 shadow-md"
                 />
-                <textarea
-                    placeholder="Comment..."
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
-                    required
-                />
-                <button type="submit">Enter</button>
+                <div className="flex w-full md:w-auto flex-row flex-1">
+                    <input
+                        type="text"
+                        placeholder="Comment..."
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}
+                        required
+                        className="bg-black py-1 px-2 text-lighter italic secondary-color rounded-l-md w-full shadow-md"
+                    />
+                    <button
+                        type="submit"
+                        className="button py-1 px-3 rounded-r-md font-semibold shadow-md hover:bg-sky-700"
+                    >
+                        Enter
+                    </button>
+                </div>
             </form>
             <ul>
                 {comments.map(c => (
@@ -82,7 +94,7 @@ function CommentsSection() {
                                 <h3 className="text-light font-semibold">{c.username}</h3>
                                 <span className="text-lighter text-xs">{new Date(c.date).toLocaleDateString("it-IT")}</span>
                             </div>
-                            <p className="italic">{c.text}</p>
+                            <p className="text-lighter italic">{c.text}</p>
                         </div>
                     </li>
                 ))}
