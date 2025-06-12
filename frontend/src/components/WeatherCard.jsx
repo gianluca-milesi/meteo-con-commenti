@@ -32,7 +32,7 @@ function WeatherCard() {
 
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex items-center gap-6">
             <h2 className="text-2xl font-semibold">{name}</h2>
             <div className="flex items-center">
                 <img
@@ -40,9 +40,11 @@ function WeatherCard() {
                     alt={description}
                     className="w-20 h-20"
                 />
-                <p className="text-xl font-medium">{temperature}°C</p>
+                <div className="flex items-center gap-2">
+                    <p className="text-xl font-medium">{temperature}°C</p>
+                    <p className="text-sm capitalize">{description}</p>
+                </div>
             </div>
-            <p className="text-sm capitalize">{description}</p>
         </div>
     )
 }

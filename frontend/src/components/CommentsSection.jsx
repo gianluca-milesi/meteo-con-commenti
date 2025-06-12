@@ -60,14 +60,14 @@ function CommentsSection() {
             <h3 className="text-center text-light font-semibold mb-2">Comments</h3>
             <form
                 onSubmit={handleSubmit}
-                className="flex flex-col md:flex-row items-center mb-2 gap-1">
+                className="flex flex-col md:flex-row items-center mb-2 gap-1 md:gap-0.25">
                 <input
                     type="text"
                     placeholder="Username..."
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
-                    className="md:w-1/3 bg-black py-1 px-2 text-light font-semibold secondary-color rounded-md mr-1 shadow-md"
+                    className="md:w-1/4 bg-black py-1 px-2 text-light font-semibold secondary-color rounded-md mr-1 shadow-md"
                 />
                 <div className="flex w-full md:w-auto flex-row flex-1">
                     <input
@@ -80,7 +80,7 @@ function CommentsSection() {
                     />
                     <button
                         type="submit"
-                        className="button py-1 px-3 rounded-r-md font-semibold shadow-md hover:bg-sky-700"
+                        className="button py-1 px-3 rounded-r-md font-semibold shadow-md text hover:bg-sky-700"
                     >
                         Enter
                     </button>

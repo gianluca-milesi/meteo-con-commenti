@@ -25,16 +25,35 @@
     background-color: #FFD588;
 }
 
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #6E4329;
+    border-radius: 999px;
+    transition: 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #824F30;
+}
+
 
 /* UTILITIES */
 .button {
     background-color: #FFA63E;
-    color: #FFF1D0;
+    color: #64492e;
     cursor: pointer;
-    transition: 0.1s;
+    transition: 0.2s;
+    font-size: 1rem;
 }
 
 .button:hover {
     background-color: #FFB561;
-    color: #221714;
 }
