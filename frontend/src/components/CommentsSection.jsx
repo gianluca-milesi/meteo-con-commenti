@@ -1,29 +1,15 @@
-import { useState, useEffect, useContext } from "react"
+//Contexts
 import GlobalContext from "../contexts/GlobalContext"
+//Hooks
+import { useState, useContext } from "react"
+
 
 function CommentsSection() {
 
-    const { city } = useContext(GlobalContext)
-    const [comments, setComments] = useState(null)
+    const { city, comments, fetchComments } = useContext(GlobalContext)
+
     const [username, setUsername] = useState("")
     const [text, setText] = useState("")
-
-    async function fetchComments() {
-        try {
-            const response = await fetch(`http://localhost:3000/api/comments?city=${city}`)
-            if (!response.ok) {
-                throw new Error("Errore nel recupero dei commenti")
-            }
-            const data = await response.json()
-            setComments(data)
-        } catch (err) {
-            console.error(err)
-        }
-    }
-
-    useEffect(() => {
-        fetchComments()
-    }, [city])
 
     async function handleSubmit(e) {
         e.preventDefault()

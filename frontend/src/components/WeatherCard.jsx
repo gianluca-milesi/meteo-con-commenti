@@ -1,39 +1,37 @@
-import { useState, useEffect } from "react"
-const API_KEY = import.meta.env.VITE_API_KEY
-const CITY = "Rome"
+//Contexts
+import GlobalContext from "../contexts/GlobalContext"
+//Hooks
+import { useContext } from "react"
 
 
 function WeatherCard() {
 
-    const [weather, setWeather] = useState(null)
+    const { weather, city, setCity } = useContext(GlobalContext)
 
-    async function fetchWeather() {
-        try {
-            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${API_KEY}`)
-            if (!response.ok) {
-                throw new Error("Errore nel recupero dei dati meteo")
-            }
-            const data = await response.json()
-            setWeather(data)
-        } catch (err) {
-            console.error(err)
-        }
-    }
+    //Per ora città a mano
+    const cities = ["Rome", "Milan", "Naples", "Turin", "Florence", "Bologna", "Venice", "Palermo"]
 
-    useEffect(() => {
-        fetchWeather()
-    }, [])
-
-    if (!weather) return <div>Non ci sono i dati...</div>
+    if (!weather) return null
     const { name, main, weather: weatherDetails } = weather
-    const temperature = Math.round(main.temp) - 273
+    const temperature = Math.round(main.temp)
     const description = weatherDetails[0].description
     const icon = weatherDetails[0].icon
 
 
     return (
-        <div className="flex items-center gap-6">
-            <h2 className="text-2xl font-semibold">{name}</h2>
+        <div className="flex items-center justify-center gap-4">
+            <select
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className="py-1 px-3 secondary-color font-semibold rounded-md shadow-md"
+            >
+                {cities.map((c) => (
+                    <option key={c} value={c}>
+                        {c}
+                    </option>
+                ))}
+            </select>
+
             <div className="flex items-center">
                 <img
                     src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
