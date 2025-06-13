@@ -4,7 +4,7 @@ const connection = require("../data/db.js")
 function index(req, res) {
     const { city } = req.query
 
-    let sql = `SELECT * FROM comments WHERE city = ?`
+    let sql = `SELECT * FROM comments WHERE city = ? ORDER BY created_at DESC`
 
     connection.query(sql, city, (err, results) => {
         if (err) {
@@ -16,9 +16,8 @@ function index(req, res) {
 
 //Store
 function store(req, res) {
-    const { username, text } = req.body
+    const { username, city, text } = req.body
 
-    const city = "Rome"
     const date = new Date().toISOString().split("T")[0]
 
     const sql = `INSERT INTO comments (username, city, date, text) VALUES (?, ?, ?, ?)`

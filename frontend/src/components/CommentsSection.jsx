@@ -18,7 +18,6 @@ function CommentsSection() {
             username,
             text,
             city,
-            date: new Date().toISOString().split("T")[0]
         }
 
         try {
@@ -78,7 +77,12 @@ function CommentsSection() {
                         <div className="flex flex-col secondary-color p-2 rounded-xl shadow-md">
                             <div className="flex justify-between">
                                 <h3 className="text-light font-semibold">{c.username}</h3>
-                                <span className="text-lighter text-xs">{new Date(c.date).toLocaleDateString("it-IT")}</span>
+                                <span className="text-lighter text-xs">
+                                    {new Date(c.created_at).toLocaleString("it-IT", {
+                                        dateStyle: "short",
+                                        timeStyle: "short"
+                                    })}
+                                </span>
                             </div>
                             <p className="text-lighter italic">{c.text}</p>
                         </div>

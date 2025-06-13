@@ -48,7 +48,7 @@ function App() {
   return (
     <GlobalContext.Provider value={{
       weather, setWeather,
-      comments, setComments,
+      comments, setComments, fetchComments,
       city, setCity,
     }}>
       <HomePage />
