@@ -10,6 +10,7 @@ const API_KEY = import.meta.env.VITE_API_KEY
 function App() {
 
   const [weather, setWeather] = useState(null)
+  const [forecast, setForecast] = useState(null)
   const [comments, setComments] = useState([])
   const [city, setCity] = useState("Rome")
 
@@ -21,6 +22,19 @@ function App() {
       }
       const data = await response.json()
       setWeather(data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  async function fetchForecast(city) {
+    try {
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`)
+      if (!response.ok) {
+        throw new Error("Errore nel recupero delle previsioni meteo")
+      }
+      const data = await response.json()
+      setForecast(data)
     } catch (err) {
       console.error(err)
     }
@@ -41,6 +55,7 @@ function App() {
 
   useEffect(() => {
     fetchWeather()
+    fetchForecast(city)
     fetchComments()
   }, [city])
 
@@ -48,6 +63,7 @@ function App() {
   return (
     <GlobalContext.Provider value={{
       weather, setWeather,
+      forecast, fetchForecast,
       comments, setComments, fetchComments,
       city, setCity,
     }}>
