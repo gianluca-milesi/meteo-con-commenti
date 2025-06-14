@@ -21,31 +21,32 @@ function WeatherCard() {
 
 
     return (
-        <div className="flex gap-2 min-w-max">
+        <div className="flex flex-col gap-2 min-w-max">
+            <select
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className="py-1 px-3 secondary-color font-semibold rounded-md shadow-md"
+            >
+                {cities.map((c) => (
+                    <option key={c} value={c}>
+                        {c}
+                    </option>
+                ))}
+            </select>
             <div className="flex items-center gap-2">
-                <select
-                    value={city}
-                    onChange={(e) => setCity(e.target.value)}
-                    className="py-1 px-3 secondary-color font-semibold rounded-md shadow-md"
-                >
-                    {cities.map((c) => (
-                        <option key={c} value={c}>
-                            {c}
-                        </option>
-                    ))}
-                </select>
                 <div className="min-w-[80px] flex flex-col items-center justify-center secondary-color p-2 rounded-lg shadow-md">
-                    <p className="text-xs text-lighter">Now</p>
+                    <p className="text-xs text-lighter font-semibold">Now</p>
                     <img
                         src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
                         alt={description}
                         className="w-[50px] h-[50px]"
                     />
                     <p className="text-sm font-semibold">{temperature}°C</p>
+                    <p className="text-xs text-lighter italic">{description}</p>
                 </div>
+                <HourlyForecast />
             </div>
 
-            <HourlyForecast />
         </div>
     )
 }

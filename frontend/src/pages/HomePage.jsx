@@ -9,7 +9,7 @@ function HomePage() {
                 <div className="overflow-x-auto flex flex-1 justify-center items-center card-light rounded-tl-xl rounded-tr-xl p-4">
                     <WeatherCard />
                 </div>
-                <div className="overflow-auto flex-5 card-lighter rounded-bl-xl rounded-br-xl p-4">
+                <div className="overflow-auto flex-3 card-lighter rounded-bl-xl rounded-br-xl p-4">
                     <CommentsSection />
                 </div>
             </div>
