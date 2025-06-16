@@ -12,8 +12,13 @@ function HourlyForecast() {
     if (forecastError) return <p className="text-red-500 text-sm">{forecastError}</p>
     if (!forecast) return null
 
-    const today = new Date().toISOString().split("T")[0]
-    const todayForecasts = forecast.list.filter(f => f.dt_txt.startsWith(today))
+    const now = new Date()
+    const today = now.toISOString().split("T")[0]
+    const todayForecasts = forecast.list.filter(f => {
+        const forecastDate = new Date(f.dt_txt)
+        const isToday = f.dt_txt.startsWith(today)
+        return isToday && forecastDate >= now
+    })
 
     return (
         <div className="flex gap-2">
