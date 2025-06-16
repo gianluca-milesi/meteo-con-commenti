@@ -6,9 +6,12 @@ import { useContext } from "react"
 
 function HourlyForecast() {
 
-    const { forecast } = useContext(GlobalContext)
+    const { forecast, forecastLoading, forecastError } = useContext(GlobalContext)
 
+    if (forecastLoading) return <p className="text-light text-sm">Loading forecast...</p>
+    if (forecastError) return <p className="text-red-500 text-sm">{forecastError}</p>
     if (!forecast) return null
+
     const today = new Date().toISOString().split("T")[0]
     const todayForecasts = forecast.list.filter(f => f.dt_txt.startsWith(today))
 

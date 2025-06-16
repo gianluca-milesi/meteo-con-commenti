@@ -6,43 +6,40 @@ import { useState, useContext } from "react"
 
 function CommentsSection() {
 
-    const { city, comments, fetchComments } = useContext(GlobalContext)
+    const { comments, commentsLoading, commentsError, addComment } = useContext(GlobalContext)
 
+    //Form
     const [username, setUsername] = useState("")
     const [text, setText] = useState("")
+    //Loader
+    const [submitLoading, setSubmitLoading] = useState(false)
+    const [submitError, setSubmitError] = useState(null)
 
     async function handleSubmit(e) {
         e.preventDefault()
-
-        const newComment = {
-            username,
-            text,
-            city,
-        }
+        setSubmitLoading(true)
+        setSubmitError(null)
 
         try {
-            const response = await fetch("http://localhost:3000/api/comments", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(newComment),
-            })
-
-            if (!response.ok) throw new Error("Errore nell'invio del commento")
-
-            fetchComments()
+            await addComment({ username, text })
             setUsername("")
             setText("")
         } catch (err) {
-            console.error(err)
+            setSubmitError(err.message)
+        } finally {
+            setSubmitLoading(false)
         }
     }
 
-    if (!comments) return null
+    { commentsError && <p className="text-red-500">{commentsError}</p> }
+    { commentsLoading && <p className="text-light text-sm">Loading comments...</p> }
+    { !comments.length && !commentsLoading && <p className="text-light italic">No comments yet.</p> }
 
 
     return (
         <section>
             <h3 className="text-center text-light font-semibold mb-2">Comments</h3>
+
             <form
                 onSubmit={handleSubmit}
                 className="flex flex-col md:flex-row items-center mb-2 gap-1 md:gap-0.25">
@@ -71,6 +68,7 @@ function CommentsSection() {
                     </button>
                 </div>
             </form>
+
             <ul>
                 {comments.map(c => (
                     <li key={c.id} className="mb-2">
