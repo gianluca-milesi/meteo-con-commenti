@@ -35,8 +35,9 @@ function HourlyForecast() {
                     <div key={i} className="min-w-[80px] flex flex-col items-center justify-center secondary-color p-2 rounded-lg shadow-md">
                         <p className="text-xs text-lighter">{hour}</p>
                         <img
-                            src={`https://openweathermap.org/img/wn/${icon}.png`}
+                            src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
                             alt={description}
+                            className="w-[50px] h-[50px] object-contain"
                         />
                         <p className="text-sm font-semibold">{temperature}°C</p>
                     </div>

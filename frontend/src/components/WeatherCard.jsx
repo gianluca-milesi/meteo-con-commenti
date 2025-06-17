@@ -45,16 +45,19 @@ function WeatherCard() {
                     </option>
                 ))}
             </select>
-            <div className="flex items-center gap-2">
-                <div className="min-w-[80px] flex flex-col items-center justify-center secondary-color p-2 rounded-lg shadow-md">
-                    <p className="text-xs text-lighter font-semibold">Current ({formattedTime})</p>
-                    <img
-                        src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
-                        alt={description}
-                        className="w-[50px] h-[50px]"
-                    />
-                    <p className="text-sm font-semibold">{temperature}°C</p>
-                    <p className="text-xs text-lighter italic">{description}</p>
+            <div className="flex flex-col items-center gap-2">
+                <div className="w-full secondary-color p-2 rounded-lg shadow-md">
+                    <p className="text-xs text-lighter text-center font-semibold">Current ({formattedTime})</p>
+                    <div className="flex items-center">
+                        <img
+                            src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
+                            alt={description}
+                            className="w-[50px] h-[50px] object-contain"
+                        />                        <div className="flex flex-col">
+                            <p className="text-xl text-black font-semibold">{temperature}°C</p>
+                            <p className="text-xs text-lighter italic">{description}</p>
+                        </div>
+                    </div>
                 </div>
                 <HourlyForecast />
             </div>
