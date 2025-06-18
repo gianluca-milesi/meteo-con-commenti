@@ -6,7 +6,7 @@ import { useState, useContext } from "react"
 
 function CommentsSection() {
 
-    const { comments, commentsLoading, commentsError, addComment } = useContext(GlobalContext)
+    const { comments, commentsLoading, commentsError, addComment, city } = useContext(GlobalContext)
 
     //Form
     const [username, setUsername] = useState("")
@@ -21,7 +21,7 @@ function CommentsSection() {
         setSubmitError(null)
 
         try {
-            await addComment({ username, text })
+            await addComment({ username, city, text })
             setUsername("")
             setText("")
         } catch (err) {
